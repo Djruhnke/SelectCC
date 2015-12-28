@@ -45,6 +45,13 @@ void findResult(float length, float height, float pitch, float* resultFeet, floa
 	float depth = (height / pitch) * 12;
 	*resultFeet = sqrt(length * length + depth * depth);
 	*resultInches = ceil((*resultFeet - floor(*resultFeet)) * 12);
+
+	//If inches are twelve then increment up to the next foot and set inches to 0
+	if (*resultInches == 12){
+		*resultInches = 0;
+		*resultFeet += 1;
+	}
+	
 	*resultFeet = floor(*resultFeet);
 	printf("\n");
 	printf("The hip/valley is %d feet %d inches\n", (int) *resultFeet, (int) *resultInches);
